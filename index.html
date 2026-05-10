@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfólio Saulo Rangel</title>
   <link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <script
     defer
     crossorigin="anonymous"
@@ -16,13 +19,6 @@
     defer
     src="assets/scripts/script.js"
   ></script>
-
-  <link
-    media="print"
-    rel="stylesheet"
-    onload="this.media = 'all'"
-    href="assets/styles/style.css"
-  />
 
   <link
     media="print"
@@ -716,5 +712,16 @@
     Portfólio desenvolvido por <a href="https://github.com/Saulorangel87" target="_blank">Saulo Rangel</a>. Todos os
     direitos reservados. &copy; 2026
   </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const style = document.createElement('style')
+
+      style.setAttribute('rel', 'stylesheet')
+      style.setAttribute('href', 'assets/styles/style.css')
+
+      document.head.appendChild(style)
+    })
+  </script>
 </body>
 </html>
