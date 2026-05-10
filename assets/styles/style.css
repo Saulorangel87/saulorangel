@@ -245,12 +245,17 @@ article h2 {
   cursor: pointer;
 }
 
-#projeto-container .projeto .foto {
+#projeto-container .projeto .fotopic {
   width: 100%;
-  aspect-ratio: 16/9;
-  object-fit: cover;
   overflow: hidden;
   border-radius: 8px;
+  aspect-ratio: 16 / 9;
+}
+
+#projeto-container .projeto .foto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 footer {
@@ -688,39 +693,44 @@ footer a:hover {
 }
 
 @media screen and (min-width: 768px) {
+  main {
+    grid-template-columns: auto 300px 1fr auto;
+  }
 
-main {
-  grid-template-columns: auto 300px 1fr auto;
-}
+  section#ficha {
+    grid-column: 2 / 3;
+    height: fit-content;
+    position: sticky;
+    top: 65px;
+  }
 
-section#ficha {
-  grid-column: 2 / 3;
-  height: fit-content;
-  position: sticky;
-  top: 65px;
-}
-
-section#detalhes {
-  grid-column: 3 / 4;
-}
+  section#detalhes {
+    grid-column: 3 / 4;
+  }
 
   #skill-container {
     grid-template-columns: 1fr 1fr;
   }
 
-#projeto-container .projeto {
-  flex-direction: row-reverse;
-  justify-content: space-between;
-}
+  #projeto-container .projeto {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
 
-#projeto-container .projeto-info {
-  max-width: 80%;
-}
+  #projeto-container .projeto-info {
+    max-width: 80%;
+  }
 
-#projeto-container .foto {
-  aspect-ratio: 1/1;
-  max-width: 20%;
-  max-height: 200px;
-}
+  #projeto-container .fotopic {
+    aspect-ratio: 1/1;
+    display: block;
+    max-width: 20%;
+    max-height: 200px;
+  }
 
+  #projeto-container .foto {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
 }
