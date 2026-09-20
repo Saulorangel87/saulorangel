@@ -84,6 +84,8 @@ body::before, body::after, .site-header, .site-footer { right: auto; width: 100d
 html { scroll-padding-bottom: 3.5rem; }
 
 @media (max-width: 1024px) {
+  #root { overflow: visible; }
+  .site-shell { overflow-x: hidden; }
   .main-nav { display: none !important; }
   .main-nav.is-open { display: flex !important; }
   .header-status { display: none !important; }

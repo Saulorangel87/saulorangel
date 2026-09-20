@@ -20,5 +20,5 @@ export default function App() {
     window.addEventListener('pointermove', onPointerMove, { passive: true });
     return () => { window.removeEventListener('pointermove', onPointerMove); if (frame) cancelAnimationFrame(frame); };
   }, []);
-  return <div className="site-shell"><Navbar /><main id="conteudo"><Hero /><About /><Projects /><TechStack /><Journey /><Contact /></main><Footer /></div>;
+  return <><div className="site-shell"><Navbar /><main id="conteudo"><Hero /><About /><Projects /><TechStack /><Journey /><Contact /></main></div><Footer /></>;
 }
