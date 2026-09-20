@@ -14,9 +14,11 @@ export default function Navbar() {
     const onScroll = () => setScrolled(window.scrollY > 18);
     onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
     const sections = links.map(({ href }) => document.querySelector(href)).filter(Boolean);
-    const observer = new IntersectionObserver((entries) => entries.forEach((entry) => { if (entry.isIntersecting) setActive(entry.target.id); }), { rootMargin: '-38% 0px -52% 0px', threshold: 0 });
-    sections.forEach((section) => observer.observe(section));
-    return () => { window.removeEventListener('scroll', onScroll); observer.disconnect(); };
+    const observer = 'IntersectionObserver' in window
+      ? new IntersectionObserver((entries) => entries.forEach((entry) => { if (entry.isIntersecting) setActive(entry.target.id); }), { rootMargin: '-38% 0px -52% 0px', threshold: 0 })
+      : null;
+    sections.forEach((section) => observer?.observe(section));
+    return () => { window.removeEventListener('scroll', onScroll); observer?.disconnect(); };
   }, []);
   const closeMenu = () => setMenuOpen(false);
   return <header className={`site-header ${scrolled ? 'is-scrolled' : ''}`}><div className="site-container flex min-h-[4.5rem] items-center justify-between gap-6">
