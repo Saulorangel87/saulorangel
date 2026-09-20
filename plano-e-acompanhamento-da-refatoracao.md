@@ -74,3 +74,13 @@ Este arquivo registra o processo da migração e as decisões tomadas. O arquivo
 ## Resumo da entrega
 
 O projeto agora usa Vite como ferramenta de desenvolvimento e build, React para a composição da homepage e Tailwind CSS integrado ao pipeline. O visual foi reconstruído seguindo o modelo aprovado, mantendo os projetos e a essência profissional de Saulo Rangel, com o conteúdo sensível e o currículo completo fora da homepage.
+
+## Ajustes posteriores — mobile, cards e footer
+
+- Corrigida a largura mobile do container com `calc(100% - 2rem)`, além de contenção da composição 3D para evitar deslocamento horizontal.
+- Os visuais de Cadência, Controle de Estoque e Controle de Despesas agora são links clicáveis para seus respectivos aplicativos.
+- O Guia de Logística foi mantido como já estava na nova homepage, sem CTA e sem link externo.
+- Footer atualizado no padrão visual solicitado, com LinkedIn, GitHub, e-mail `sauloleonardo1987@gmail.com`, localização e versão.
+- O mesmo e-mail foi atualizado no botão da seção de contato.
+- Os três prints enviados foram usados como referência visual; os arquivos de imagem ainda precisam estar disponíveis localmente no projeto para serem incorporados ao bundle final.
+- Build novamente validada com sucesso após os ajustes.
