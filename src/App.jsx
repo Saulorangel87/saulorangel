@@ -11,6 +11,8 @@ import Footer from './components/Footer';
 export default function App() {
   useEffect(() => {
     const root = document.documentElement;
+    const canMatchMedia = typeof window.matchMedia === 'function';
+    if (!canMatchMedia) return undefined;
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
     if (reduceMotion || !finePointer) return undefined;

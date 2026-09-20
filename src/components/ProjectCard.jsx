@@ -5,6 +5,7 @@ import ProjectVisual from './ProjectVisual';
 export default function ProjectCard({ project, featured = false }) {
   const cardRef = useRef(null);
   const handlePointerMove = (event) => {
+    if (typeof window.matchMedia !== 'function') return;
     if (!window.matchMedia('(hover: hover)').matches || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const card = cardRef.current; if (!card) return;
     const rect = card.getBoundingClientRect(); const x = (event.clientX - rect.left) / rect.width - 0.5; const y = (event.clientY - rect.top) / rect.height - 0.5;

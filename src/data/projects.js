@@ -2,22 +2,22 @@ export const projects = [
   {
     id: 'cadencia', number: '01', eyebrow: 'aplicação real · 2026', title: 'Cadência',
     description: 'Treino inteligente de ciclismo que respeita disponibilidade, experiência, recuperação e evolução — com decisões explicáveis e dados protegidos.',
-    tags: ['ciclismo', 'planejamento', 'produto'], status: 'em evolução', url: 'https://cadencia.devsaulo.com.br/', image: './images/cadencia.png', visual: 'cadencia',
+    tags: ['ciclismo', 'planejamento', 'produto'], status: 'em evolução', url: 'https://cadencia.devsaulo.com.br/', image: './images/cadencia.png?v=20260920', visual: 'cadencia',
   },
   {
     id: 'estoque', number: '02', eyebrow: 'aplicação real · 2026', title: 'Controle de Estoque',
     description: 'Aplicação para organizar produtos, estoque mínimo, importação de notas e acesso autenticado em uma operação simples de acompanhar.',
-    tags: ['React', 'Go', 'SQLite', 'Docker'], status: 'em produção', url: 'https://estoque.devsaulo.com.br/', image: './images/estoque.png', visual: 'estoque',
+    tags: ['React', 'Go', 'SQLite', 'Docker'], status: 'em produção', url: 'https://estoque.devsaulo.com.br/', image: './images/estoque.png?v=20260920', visual: 'estoque',
   },
   {
     id: 'despesas', number: '03', eyebrow: 'aplicação real · 2026', title: 'Controle de Despesas',
     description: 'Uma aplicação criada para organizar e acompanhar a vida financeira com mais clareza, transformando registros do dia a dia em visão de conjunto.',
-    tags: ['finanças', 'organização', 'produto'], status: 'em evolução', url: 'https://despesas.devsaulo.com.br/', image: './images/despesas.png', visual: 'despesas',
+    tags: ['finanças', 'organização', 'produto'], status: 'em evolução', url: 'https://despesas.devsaulo.com.br/', image: './images/despesas.png?v=20260920', visual: 'despesas',
   },
   {
     id: 'logistica', number: '04', eyebrow: 'projeto de uso interno · 2026', title: 'Guia de Logística',
     description: 'Sistema interno para digitalizar mapas, ruas, rotas e organização operacional do CDD Campos dos Goytacazes.',
-    tags: ['React', 'Go', 'PostgreSQL', 'Leaflet', 'PWA'], status: 'acesso restrito', url: null, image: './images/correios@3x.webp', visual: 'mapa', restricted: true,
+    tags: ['React', 'Go', 'PostgreSQL', 'Leaflet', 'PWA'], status: 'acesso restrito', url: null, image: './images/correios@3x.webp?v=20260920', visual: 'mapa', restricted: true,
   },
 ];
 
