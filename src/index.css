@@ -144,3 +144,8 @@ body {
     overflow-x: hidden;
   }
 }
+
+/* Keeps the trajectory decoration inside the section instead of the page. */
+.journey-section {
+  position: relative;
+}
