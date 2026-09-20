@@ -113,3 +113,34 @@ html { scroll-padding-bottom: 3.5rem; }
 @media (min-width: 1025px) {
   .menu-toggle { display: none !important; }
 }
+
+/* Mobile viewport containment: keeps 3D layers from widening the document. */
+html,
+body,
+#root,
+.site-shell {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  min-width: 0;
+}
+
+/* The footer is portaled to body and follows the browser's visible viewport. */
+.site-footer {
+  inset-inline: 0;
+  bottom: var(--footer-viewport-offset, 0px);
+  width: 100%;
+  max-width: 100%;
+  isolation: isolate;
+  transform: none;
+}
+
+@media (max-width: 1024px) {
+  #root,
+  .site-shell {
+    overflow-x: hidden;
+  }
+}
