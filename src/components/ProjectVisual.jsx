@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { ArrowUpRight } from './Icons';
 
 export default function ProjectVisual({ project }) {
   const imageRef = useRef(null);
@@ -37,15 +38,38 @@ export default function ProjectVisual({ project }) {
   return (
     <figure className="project-visual">
       <div className="project-image-frame">
-        <img
-          ref={imageRef}
-          src={project.image}
-          alt={alt}
-          loading="lazy"
-          decoding="async"
-          width={project.id === 'logistica' ? 1914 : 1908}
-          height={project.id === 'logistica' ? 873 : 891}
-        />
+        {project.url ? (
+          <a
+            className="project-image-link"
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={'Abrir o site do projeto ' + project.title + ' em nova aba'}
+          >
+            <img
+              ref={imageRef}
+              src={project.image}
+              alt={alt}
+              loading="lazy"
+              decoding="async"
+              width={project.id === 'logistica' ? 1914 : 1908}
+              height={project.id === 'logistica' ? 873 : 891}
+            />
+            <span className="project-image-cta" aria-hidden="true">
+              Visitar projeto <ArrowUpRight />
+            </span>
+          </a>
+        ) : (
+          <img
+            ref={imageRef}
+            src={project.image}
+            alt={alt}
+            loading="lazy"
+            decoding="async"
+            width={project.id === 'logistica' ? 1914 : 1908}
+            height={project.id === 'logistica' ? 873 : 891}
+          />
+        )}
       </div>
       <figcaption><span>{project.title}</span><span>interface do projeto</span></figcaption>
     </figure>
