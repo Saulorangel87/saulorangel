@@ -4,8 +4,8 @@ import { MenuIcon } from './Icons';
 const links = [
   { href: '#projetos', label: 'Projetos' },
   { href: '#sobre', label: 'Sobre' },
-  { href: '#tecnologias', label: 'Stack' },
   { href: '#trajetoria', label: 'Trajetória' },
+  { href: '#tecnologias', label: 'Stack' },
   { href: '#contato', label: 'Contato' },
 ];
 
@@ -50,7 +50,7 @@ export default function Navbar() {
     <header className={'site-header' + (scrolled ? ' is-scrolled' : '')}>
       <div className="site-container nav-inner">
         <a className="brand-wordmark" href="#inicio" onClick={closeMenu} aria-label="Saulo Rangel, voltar ao início">
-          SAULO RANGEL<span aria-hidden="true">.</span>
+          SAULO RANGEL
         </a>
         <nav id="main-nav" className={'main-nav' + (menuOpen ? ' is-open' : '')} aria-label="Navegação principal">
           {links.map((link) => (
