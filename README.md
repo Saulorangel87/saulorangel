@@ -52,6 +52,13 @@ docker run --rm \
 
 Como a pasta `dist/` está montada no Nginx, o site passa a servir o novo build assim que o comando termina. Se uma alteração de imagem ou favicon não aparecer, faça uma recarga forçada no navegador para limpar o cache.
 
+Se `deploy/nginx/default.conf` mudar, valide e recarregue a configuração do container:
+
+```bash
+docker exec saulorangel-portfolio nginx -t && \
+docker exec saulorangel-portfolio nginx -s reload
+```
+
 ## Conteúdo
 
 O portfólio destaca Cadência, Controle de Estoque, Controle de Despesas e o Guia de Logística. As imagens dos projetos públicos abrem seus respectivos sites; o Guia é apresentado como projeto interno, sem link público, login ou credenciais.
