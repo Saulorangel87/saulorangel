@@ -1,33 +1,66 @@
 # Portfólio pessoal — Saulo Rangel
 
-Homepage profissional construída com React, Vite e Tailwind CSS. A apresentação combina narrativa de carreira, projetos reais e uma camada visual 3D/parallax leve, com foco em acessibilidade, desempenho e leitura em telas pequenas.
+Portfólio de página única feito com React, Vite e Tailwind CSS. Apresenta minha trajetória como desenvolvedor em formação e projetos próprios, com layout responsivo, animações discretas e respeito à preferência por movimento reduzido.
 
-## Rodar localmente
+Site: <https://devsaulo.com.br>
+
+## Tecnologias
+
+- React 19
+- Vite 7
+- Tailwind CSS 4
+- Nginx para servir os arquivos estáticos de produção
+
+## Desenvolvimento local
+
+Requisitos: Node.js e npm instalados na máquina de desenvolvimento.
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
-Para gerar a versão de produção:
+Para testar a versão de produção localmente:
 
 ```bash
 npm run build
 npm run preview
 ```
 
-## Estrutura
+O Vite gera os arquivos estáticos na pasta `dist/`.
 
-- `src/` — aplicação React, componentes, dados dos projetos e estilos.
-- `assets/` — imagens, fontes e favicon reaproveitados do projeto original.
-- `public/` — arquivos necessários para a publicação (`CNAME` e `ads.txt`).
-- `legacy/` — cópia da homepage, CSS e JavaScript anteriores, preservada para consulta.
-- `plano-e-acompanhamento-da-refatoracao.md` — registro das etapas, decisões e verificações.
+## Publicação na VPS
+
+O site em produção é estático. O container `saulorangel-portfolio` usa `nginx:alpine` e serve `dist/`, montada em `/usr/share/nginx/html`. A configuração do Nginx fica em `deploy/nginx/default.conf` e escuta na porta `8080` dentro do container.
+
+Não há arquivo Compose neste repositório. O container existente recebe os arquivos por bind mount; portanto, não é necessário executar `docker compose up` nem reiniciar o Nginx após atualizar `dist/`. Node.js/npm não precisam ser instalados no host da VPS: o build roda em um container temporário de Node.
+
+Depois de enviar as alterações ao repositório, atualize o checkout da VPS e gere o build a partir da pasta do projeto:
+
+```bash
+cd ~/apps/saulorangel-portfolio
+git pull --ff-only
+docker run --rm \
+  --user "$(id -u):$(id -g)" \
+  -e HOME=/tmp \
+  -e npm_config_cache=/tmp/.npm \
+  -v "$PWD:/app" \
+  -w /app \
+  node:22-bookworm-slim \
+  sh -c 'npm ci && npm run build'
+```
+
+Como a pasta `dist/` está montada no Nginx, o site passa a servir o novo build assim que o comando termina. Se uma alteração de imagem ou favicon não aparecer, faça uma recarga forçada no navegador para limpar o cache.
 
 ## Conteúdo
 
-A homepage destaca Cadência, Controle de Estoque, Controle de Despesas e Guia de Logística. O Guia é apresentado como projeto de uso interno, sem CTA de login ou exposição de credenciais e identificadores.
+O portfólio destaca Cadência, Controle de Estoque, Controle de Despesas e o Guia de Logística. As imagens dos projetos públicos abrem seus respectivos sites; o Guia é apresentado como projeto interno, sem link público, login ou credenciais.
 
-## Publicação
+## Estrutura do projeto
 
-O domínio configurado no projeto é `devsaulo.com.br`. A configuração `CNAME` é copiada para a saída do Vite por meio de `public/CNAME`.
+- `src/` — aplicação React, componentes, dados e estilos.
+- `public/images/` — capturas de tela, imagem do hero e favicon.
+- `assets/fonts/` — fontes usadas pelo site.
+- `deploy/nginx/default.conf` — configuração do Nginx do container.
+- `legacy/` — versão anterior, mantida para consulta.
+- `dist/` — saída gerada pelo build; não editar manualmente.
