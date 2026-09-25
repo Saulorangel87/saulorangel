@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <defs>
+    <clipPath id="rounded-square">
+      <rect width="1024" height="1024" rx="150" />
+    </clipPath>
+  </defs>
+  <image href="./minha-marca.png" width="1024" height="1024" preserveAspectRatio="xMidYMid slice" clip-path="url(#rounded-square)" />
+</svg>

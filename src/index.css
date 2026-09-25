@@ -230,10 +230,13 @@ section,
   transform: none;
 }
 
+.js-ready .reveal {
+  transition: opacity .65s cubic-bezier(.22, 1, .36, 1), transform .65s cubic-bezier(.22, 1, .36, 1);
+}
+
 .js-ready .reveal:not(.is-visible) {
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity .55s ease, transform .55s ease;
+  transform: translateY(20px);
 }
 
 .reveal.is-visible {
@@ -1172,9 +1175,9 @@ section,
   }
 
   .hero-section {
-    min-height: clamp(650px, 94svh, 780px);
-    align-items: flex-end;
-    padding-block: 7rem 2.25rem;
+    min-height: auto;
+    align-items: flex-start;
+    padding-block: 5rem 2rem;
   }
 
   .hero-backdrop {
@@ -1381,7 +1384,11 @@ section,
   .contact-layout {
     grid-template-columns: 1fr;
     gap: 1.2rem;
-    padding-block: 3.2rem;
+    padding-block: 2.75rem .75rem;
+  }
+
+  .contact-section {
+    padding-block: 0;
   }
 
   .contact-layout > .eyebrow {
