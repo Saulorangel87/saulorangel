@@ -3,5 +3,27 @@ import ProjectCard from './ProjectCard';
 import { projects } from '../data/projects';
 
 export default function Projects() {
-  return <section className="section-padding projects-section" id="projetos" aria-labelledby="projetos-title"><div className="site-container"><Reveal className="section-heading-row"><div><p className="eyebrow">02 · laboratório real</p><h2 id="projetos-title" className="section-title">O problema vem primeiro.<br /><span>A tecnologia encontra o caminho.</span></h2></div><p className="section-intro">Aplicações que nasceram de necessidades concretas — e que me ensinaram a pensar em produto, dados, operação e pessoas.</p></Reveal><div className="projects-grid">{projects.map((project, index) => <Reveal key={project.id} className={`project-reveal project-reveal-${index + 1}`}><ProjectCard project={project} featured={index === 0} /></Reveal>)}</div></div></section>;
+  return (
+    <section className="projects-section" id="projetos" aria-labelledby="projetos-title">
+      <div className="site-container projects-intro">
+        <Reveal>
+          <p className="eyebrow">projetos em destaque</p>
+          <h2 id="projetos-title" className="section-title">
+            Aplicações reais<br />para <span>problemas reais.</span>
+          </h2>
+        </Reveal>
+        <Reveal className="projects-intro-copy">
+          <p>Cada projeto é um estudo, um desafio e uma oportunidade de transformar ideias em soluções funcionais.</p>
+          <span>04 projetos · 2026</span>
+        </Reveal>
+      </div>
+      <div className="projects-list">
+        {projects.map((project, index) => (
+          <Reveal as="div" className="project-reveal" key={project.id}>
+            <ProjectCard project={project} index={index} />
+          </Reveal>
+        ))}
+      </div>
+    </section>
+  );
 }

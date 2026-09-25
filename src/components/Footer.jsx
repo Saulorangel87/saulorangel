@@ -3,8 +3,8 @@ import { createPortal } from 'react-dom';
 import { GitHubIcon, LinkedInIcon, MailIcon } from './Icons';
 
 const socialLinks = [
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/saulo-rangel-rosa-leonardo-1169093a6/', icon: LinkedInIcon },
   { label: 'GitHub', href: 'https://github.com/Saulorangel87', icon: GitHubIcon },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/saulo-rangel-rosa-leonardo-1169093a6/', icon: LinkedInIcon },
   { label: 'E-mail', href: 'mailto:sauloleonardo1987@gmail.com', icon: MailIcon },
 ];
 
@@ -16,16 +16,11 @@ export default function Footer() {
     let animationFrame = 0;
 
     const updatePosition = () => {
-      const bottomBrowserInset = viewport
+      const browserInset = viewport
         ? Math.max(0, window.innerHeight - viewport.height - viewport.offsetTop)
         : 0;
-
-      footerRef.current?.style.setProperty(
-        '--footer-viewport-offset',
-        `${Math.round(bottomBrowserInset)}px`,
-      );
+      footerRef.current?.style.setProperty('--footer-viewport-offset', Math.round(browserInset) + 'px');
     };
-
     const scheduleUpdate = () => {
       window.cancelAnimationFrame(animationFrame);
       animationFrame = window.requestAnimationFrame(updatePosition);
@@ -51,7 +46,12 @@ export default function Footer() {
   const footer = (
     <footer ref={footerRef} className="site-footer">
       <div className="site-container footer-row">
-        <p>© 2026 · desenvolvido por Saulo Rangel</p>
+        <p className="footer-brand">
+          <strong>SAULO RANGEL</strong>
+          <span className="footer-desktop-copy">· Desenvolvedor Full Stack · Campos dos Goytacazes, RJ</span>
+          <span className="footer-mobile-copy">· Full Stack</span>
+        </p>
+        <p className="footer-note">Disciplina hoje, resultados sempre.</p>
         <nav className="footer-links" aria-label="Links de contato">
           {socialLinks.map(({ label, href, icon: Icon }) => (
             <a

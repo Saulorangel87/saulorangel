@@ -1,20 +1,53 @@
-import { ExternalLink } from './Icons';
-
-function VisualContent({ project }) {
-  if (project.image) {
-    const isLogisticsGuide = project.id === 'logistica';
-    return <div className="project-image-wrap"><img src={project.image} alt={isLogisticsGuide ? 'Captura pública do Guia de Logística do CDD Campos dos Goytacazes' : 'Captura de tela do projeto ' + project.title} loading="lazy" width={isLogisticsGuide ? 1914 : 1908} height={isLogisticsGuide ? 873 : 891} /><span className="image-shade" /></div>;
-  }
-
-  return <div className={'abstract-visual abstract-visual--' + project.visual} aria-hidden="true">
-    {project.visual === 'cadencia' && <><span className="abstract-ring" /><span className="abstract-wave" /><span className="abstract-dot" /></>}
-    {project.visual === 'estoque' && <><span className="abstract-box box-one" /><span className="abstract-box box-two" /><span className="abstract-box box-three" /></>}
-    {project.visual === 'despesas' && <><span className="abstract-chart chart-one" /><span className="abstract-chart chart-two" /><span className="abstract-chart chart-three" /><span className="abstract-line" /></>}
-  </div>;
-}
+import { useEffect, useRef } from 'react';
 
 export default function ProjectVisual({ project }) {
-  if (!project.url) return <div className={'project-visual' + (project.image ? ' project-visual-static' : '')}><VisualContent project={project} /></div>;
+  const imageRef = useRef(null);
 
-  return <a className="project-visual project-visual-link" href={project.url} target="_blank" rel="noopener noreferrer" aria-label={'Abrir o aplicativo ' + project.title}><VisualContent project={project} /><span className="visual-link-hint">abrir app <ExternalLink /></span></a>;
+  useEffect(() => {
+    const image = imageRef.current;
+    const motionAllowed = window.matchMedia('(min-width: 768px) and (prefers-reduced-motion: no-preference)');
+    if (!image || !motionAllowed.matches) return undefined;
+
+    let frame = 0;
+    const updateParallax = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(() => {
+        const bounds = image.getBoundingClientRect();
+        const progress = (bounds.top + bounds.height / 2) / window.innerHeight;
+        const offset = Math.max(-12, Math.min(12, (0.5 - progress) * 24));
+        image.style.setProperty('--parallax-y', offset.toFixed(1) + 'px');
+        frame = 0;
+      });
+    };
+
+    updateParallax();
+    window.addEventListener('scroll', updateParallax, { passive: true });
+    window.addEventListener('resize', updateParallax, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', updateParallax);
+      window.removeEventListener('resize', updateParallax);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, []);
+
+  const alt = project.id === 'logistica'
+    ? 'Captura do Guia de Logística usado internamente no CDD Campos dos Goytacazes'
+    : 'Captura de tela da aplicação ' + project.title;
+
+  return (
+    <figure className="project-visual">
+      <div className="project-image-frame">
+        <img
+          ref={imageRef}
+          src={project.image}
+          alt={alt}
+          loading="lazy"
+          decoding="async"
+          width={project.id === 'logistica' ? 1914 : 1908}
+          height={project.id === 'logistica' ? 873 : 891}
+        />
+      </div>
+      <figcaption><span>{project.title}</span><span>interface do projeto</span></figcaption>
+    </figure>
+  );
 }

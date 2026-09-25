@@ -1,9 +1,36 @@
 import Reveal from './Reveal';
-import { ArrowUpRight } from './Icons';
+import { ArrowUpRight, MapPinIcon } from './Icons';
 
 export default function Hero() {
-  return <section className="hero-section section-padding" id="inicio" aria-labelledby="hero-title"><div className="site-container hero-grid">
-    <Reveal className="hero-copy"><p className="eyebrow">desenvolvedor full stack em formação · 2026</p><h1 id="hero-title" className="hero-title">Problemas reais,<br /><span>aplicações em movimento.</span></h1><p className="hero-lede">Sou Saulo Rangel. Estudo tecnologia, construo produtos e transformo necessidades do cotidiano em sistemas que fazem sentido.</p><div className="hero-actions"><a className="button button-primary" href="#projetos">Ver projetos <ArrowUpRight /></a><a className="button button-quiet" href="#sobre">Conhecer a trajetória <span aria-hidden="true">↓</span></a></div><div className="hero-stats" aria-label="Resumo profissional"><div><strong>04</strong><span>aplicações reais</span></div><div><strong>ADS</strong><span>em andamento</span></div><div><strong>13+</strong><span>anos nos Correios</span></div></div></Reveal>
-    <Reveal className="hero-visual" aria-label="Composição visual tecnológica"><div className="hero-orbit hero-orbit-one" /><div className="hero-orbit hero-orbit-two" /><div className="hero-node hero-node-one" /><div className="hero-node hero-node-two" /><div className="hero-core-wrap"><div className="hero-core-glow" /><div className="hero-core"><span>SR</span></div><div className="floating-code floating-code-top"><span className="float-icon">&lt;/&gt;</span><div><strong>modo construção</strong><small>React · Go · dados</small></div></div><div className="floating-code floating-code-bottom"><span className="float-icon">⌁</span><div><strong>ideia → produto</strong><small>problema com contexto</small></div></div></div></Reveal>
-  </div><div className="site-container scroll-cue"><span>role para explorar</span><i /></div></section>;
+  return (
+    <section className="hero-section" id="inicio" aria-labelledby="hero-title">
+      <img
+        className="hero-backdrop"
+        src="./images/hero-desk.webp"
+        alt=""
+        aria-hidden="true"
+        width="1536"
+        height="1024"
+        fetchPriority="high"
+      />
+      <div className="hero-overlay" aria-hidden="true" />
+      <div className="site-container hero-content">
+        <Reveal className="hero-copy">
+          <p className="eyebrow">desenvolvedor em formação</p>
+          <h1 id="hero-title" className="hero-title">
+            <span className="hero-name">Saulo Rangel</span>
+            <span className="hero-profession">Full Stack<br />Developer</span>
+          </h1>
+          <p className="hero-lede">
+            Desenvolvo aplicações para resolver problemas reais — da interface ao backend e ao deploy.
+          </p>
+          <div className="hero-actions">
+            <a className="button button-primary" href="#projetos">Ver projetos <ArrowUpRight /></a>
+            <a className="button button-outline" href="#contato">Entrar em contato</a>
+          </div>
+          <p className="hero-location"><MapPinIcon /> Campos dos Goytacazes, RJ</p>
+        </Reveal>
+      </div>
+    </section>
+  );
 }

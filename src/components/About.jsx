@@ -1,5 +1,27 @@
 import Reveal from './Reveal';
 
 export default function About() {
-  return <section className="section-padding about-section" id="sobre" aria-labelledby="sobre-title"><div className="site-container about-grid"><Reveal className="about-portrait-wrap"><div className="about-portrait-frame"><img src="./images/imagemcompactada@3x.webp?v=20260920" alt="Saulo Rangel" width="550" height="550" /></div><div className="portrait-caption"><span>saulo.rangel</span><span>campos dos goytacazes, rj</span></div></Reveal><Reveal className="about-copy"><p className="eyebrow">01 · sobre</p><h2 id="sobre-title" className="section-title">A experiência de campo também faz parte do código.</h2><p>Sou estudante de Análise e Desenvolvimento de Sistemas e estou construindo meu caminho como desenvolvedor Full Stack. Gosto de entender como uma aplicação funciona por inteiro: da interface ao dado, da ideia ao deploy.</p><p>Minha experiência nos Correios me ensinou a observar processos, gargalos e pessoas. É desse lugar que nascem muitos dos meus projetos: problemas concretos, tratados com curiosidade, responsabilidade e software.</p><div className="about-facts"><div><span className="fact-number">01</span><span>estudo contínuo</span></div><div><span className="fact-number">02</span><span>produto com contexto</span></div><div><span className="fact-number">03</span><span>tecnologia com propósito</span></div></div></Reveal></div></section>;
+  return (
+    <section className="section-padding about-section" id="sobre" aria-labelledby="sobre-title">
+      <div className="site-container about-grid">
+        <Reveal className="about-manifesto">
+          <p className="eyebrow">sobre mim</p>
+          <span className="manifesto-index">01 / PROCESSO</span>
+          <p className="manifesto-quote">Do problema real <em>à aplicação.</em></p>
+          <span className="manifesto-caption">Processo também é evolução.</span>
+          <span className="manifesto-rule" aria-hidden="true" />
+        </Reveal>
+        <Reveal className="about-copy">
+          <h2 id="sobre-title" className="section-title">A experiência de campo também faz parte do código.</h2>
+          <p>
+            Sou estudante de Análise e Desenvolvimento de Sistemas e estou construindo meu caminho como desenvolvedor Full Stack. Gosto de entender como uma aplicação funciona por inteiro: da interface ao dado, da ideia ao deploy.
+          </p>
+          <p>
+            Minha experiência profissional nos Correios me ensinou a observar processos, gargalos e pessoas. É desse lugar que nascem muitos dos meus projetos: problemas concretos, tratados com curiosidade, responsabilidade e software.
+          </p>
+          <p className="about-signature">Saulo Rangel <span>· Campos dos Goytacazes, RJ</span></p>
+        </Reveal>
+      </div>
+    </section>
+  );
 }
