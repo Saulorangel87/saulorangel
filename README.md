@@ -52,11 +52,29 @@ docker run --rm \
 
 Como a pasta `dist/` está montada no Nginx, o site passa a servir o novo build assim que o comando termina. Se uma alteração de imagem ou favicon não aparecer, faça uma recarga forçada no navegador para limpar o cache.
 
-Se `deploy/nginx/default.conf` mudar, valide e recarregue a configuração do container:
+Se `deploy/nginx/default.conf` mudar, recrie o container para que o bind mount individual passe a apontar para o arquivo atualizado. Um `nginx -s reload` no container antigo pode continuar lendo o inode anterior deixado pelo `git pull`. A recriação causa uma breve interrupção; estes comandos preservam o endereço e a porta já publicados, além das montagens somente leitura:
 
 ```bash
-docker exec saulorangel-portfolio nginx -t && \
-docker exec saulorangel-portfolio nginx -s reload
+cd ~/apps/saulorangel-portfolio
+
+# Valide a configuração antes de interromper o container atual.
+docker run --rm \
+  -v "$PWD/deploy/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro" \
+  nginx:alpine nginx -t
+
+# Reaproveite o bind de porta do container existente sem expor o IP privado no README.
+PORT_BINDING="$(docker inspect --format '{{(index (index .HostConfig.PortBindings "8080/tcp") 0).HostIp}}:{{(index (index .HostConfig.PortBindings "8080/tcp") 0).HostPort}}:8080' saulorangel-portfolio)"
+docker rm -f saulorangel-portfolio
+docker run -d \
+  --name saulorangel-portfolio \
+  --restart unless-stopped \
+  -p "$PORT_BINDING" \
+  -v "$PWD/deploy/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro" \
+  -v "$PWD/dist:/usr/share/nginx/html:ro" \
+  nginx:alpine
+
+docker exec saulorangel-portfolio nginx -t
+docker inspect saulorangel-portfolio --format '{{.State.Status}}'
 ```
 
 ## Conteúdo
