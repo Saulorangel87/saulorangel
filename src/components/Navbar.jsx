@@ -1,15 +1,18 @@
 import { useEffect, useState } from 'react';
-import { MenuIcon } from './Icons';
+import { MenuIcon, MoonIcon, SunIcon } from './Icons';
+import { usePreferences } from '../i18n/Preferences';
+import { LANGUAGES } from '../i18n/translations';
 
 const links = [
-  { href: '#projetos', label: 'Projetos' },
-  { href: '#sobre', label: 'Sobre' },
-  { href: '#trajetoria', label: 'Trajetória' },
-  { href: '#tecnologias', label: 'Stack' },
-  { href: '#contato', label: 'Contato' },
+  { href: '#projetos', key: 'projects' },
+  { href: '#sobre', key: 'about' },
+  { href: '#trajetoria', key: 'journey' },
+  { href: '#tecnologias', key: 'stack' },
+  { href: '#contato', key: 'contact' },
 ];
 
 export default function Navbar() {
+  const { t, lang, setLang, theme, toggleTheme } = usePreferences();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState('inicio');
@@ -49,10 +52,10 @@ export default function Navbar() {
   return (
     <header className={'site-header' + (scrolled ? ' is-scrolled' : '')}>
       <div className="site-container nav-inner">
-        <a className="brand-wordmark" href="#inicio" onClick={closeMenu} aria-label="Saulo Rangel, voltar ao início">
+        <a className="brand-wordmark" href="#inicio" onClick={closeMenu} aria-label={t('common.backHome')}>
           SAULO RANGEL
         </a>
-        <nav id="main-nav" className={'main-nav' + (menuOpen ? ' is-open' : '')} aria-label="Navegação principal">
+        <nav id="main-nav" className={'main-nav' + (menuOpen ? ' is-open' : '')} aria-label={t('common.mainNav')}>
           {links.map((link) => (
             <a
               key={link.href}
@@ -60,14 +63,38 @@ export default function Navbar() {
               href={link.href}
               onClick={closeMenu}
             >
-              {link.label}
+              {t('nav.' + link.key)}
             </a>
           ))}
         </nav>
+        <div className="header-controls">
+          <div className="lang-switch" role="group" aria-label={t('common.language')}>
+            {LANGUAGES.map((code) => (
+              <button
+                key={code}
+                type="button"
+                lang={code === 'pt' ? 'pt-BR' : 'en'}
+                aria-pressed={lang === code}
+                onClick={() => setLang(code)}
+              >
+                {code.toUpperCase()}
+              </button>
+            ))}
+          </div>
+          <button
+            className="theme-toggle"
+            type="button"
+            aria-label={theme === 'dark' ? t('common.switchToLight') : t('common.switchToDark')}
+            title={theme === 'dark' ? t('common.switchToLight') : t('common.switchToDark')}
+            onClick={toggleTheme}
+          >
+            {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+          </button>
+        </div>
         <button
           className="menu-toggle"
           type="button"
-          aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
+          aria-label={menuOpen ? t('common.closeMenu') : t('common.openMenu')}
           aria-expanded={menuOpen}
           aria-controls="main-nav"
           onClick={() => setMenuOpen((value) => !value)}

@@ -1,7 +1,9 @@
 import { useEffect, useRef } from 'react';
 import { ArrowUpRight } from './Icons';
+import { usePreferences } from '../i18n/Preferences';
 
-export default function ProjectVisual({ project }) {
+export default function ProjectVisual({ project, title }) {
+  const { t } = usePreferences();
   const imageRef = useRef(null);
 
   useEffect(() => {
@@ -32,8 +34,8 @@ export default function ProjectVisual({ project }) {
   }, []);
 
   const alt = project.id === 'logistica'
-    ? 'Captura do Guia de Logística usado internamente no CDD Campos dos Goytacazes'
-    : 'Captura de tela da aplicação ' + project.title;
+    ? t('projects.altInternal')
+    : t('projects.altScreenshot', { title });
 
   return (
     <figure className="project-visual">
@@ -44,7 +46,7 @@ export default function ProjectVisual({ project }) {
             href={project.url}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={'Abrir o site do projeto ' + project.title + ' em nova aba'}
+            aria-label={t('projects.openSite', { title })}
           >
             <img
               ref={imageRef}
@@ -52,11 +54,11 @@ export default function ProjectVisual({ project }) {
               alt={alt}
               loading="lazy"
               decoding="async"
-              width={project.id === 'logistica' ? 1914 : 1908}
-              height={project.id === 'logistica' ? 873 : 891}
+              width={project.width}
+              height={project.height}
             />
             <span className="project-image-cta" aria-hidden="true">
-              Visitar projeto <ArrowUpRight />
+              {t('projects.visitProject')} <ArrowUpRight />
             </span>
           </a>
         ) : (
@@ -66,12 +68,12 @@ export default function ProjectVisual({ project }) {
             alt={alt}
             loading="lazy"
             decoding="async"
-            width={project.id === 'logistica' ? 1914 : 1908}
-            height={project.id === 'logistica' ? 873 : 891}
+            width={project.width}
+            height={project.height}
           />
         )}
       </div>
-      <figcaption><span>{project.title}</span><span>interface do projeto</span></figcaption>
+      <figcaption><span>{title}</span><span>{t('projects.interfaceCaption')}</span></figcaption>
     </figure>
   );
 }

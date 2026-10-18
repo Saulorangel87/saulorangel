@@ -1,20 +1,22 @@
 import Reveal from './Reveal';
-import { journey } from '../data/projects';
+import { usePreferences } from '../i18n/Preferences';
 
 export default function Journey() {
+  const { t } = usePreferences();
+  const items = t('journey.items');
   return (
     <section className="section-padding journey-section" id="trajetoria" aria-labelledby="trajetoria-title">
       <div className="site-container">
         <Reveal className="journey-heading">
           <div>
-            <p className="eyebrow">trajetória</p>
-            <h2 id="trajetoria-title" className="section-title">Uma carreira em <span>movimento.</span></h2>
+            <p className="eyebrow">{t('journey.eyebrow')}</p>
+            <h2 id="trajetoria-title" className="section-title">{t('journey.titlePre')}<span>{t('journey.titleEm')}</span></h2>
           </div>
-          <p>O caminho até a tecnologia se apoia em experiência, disciplina e vontade de resolver melhor.</p>
+          <p>{t('journey.intro')}</p>
         </Reveal>
         <div className="journey-list">
-          {journey.map((item, index) => (
-            <Reveal as="article" className="journey-item" key={item.date + '-' + item.title}>
+          {items.map((item, index) => (
+            <Reveal as="article" className="journey-item" key={index}>
               <span className="journey-index">0{index + 1}</span>
               <span className="journey-date">{item.date}</span>
               <div>

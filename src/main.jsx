@@ -1,6 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
+import { PreferencesProvider } from './i18n/Preferences';
 import './index.css';
 
 // Ativa as animações somente depois que o JavaScript iniciou com sucesso.
@@ -17,6 +18,8 @@ window.addEventListener('unhandledrejection', restoreFallback);
 
 createRoot(rootElement).render(
   <StrictMode>
-    <App />
+    <PreferencesProvider>
+      <App />
+    </PreferencesProvider>
   </StrictMode>,
 );

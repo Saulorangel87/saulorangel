@@ -79,11 +79,13 @@ docker inspect saulorangel-portfolio --format '{{.State.Status}}'
 
 ## Conteúdo
 
-O portfólio destaca Cadência, Controle de Estoque, Controle de Despesas e o Guia de Logística. As imagens dos projetos públicos abrem seus respectivos sites; o Guia é apresentado como projeto interno, sem link público, login ou credenciais.
+O portfólio destaca Cadência, Controle de Estoque, Controle de Despesas, o Guia de Logística e o Let's Go Run. As imagens dos projetos públicos abrem seus respectivos sites; o Guia é apresentado como projeto interno, sem link público, login ou credenciais.
 
 ## Estrutura do projeto
 
 - `src/` — aplicação React, componentes, dados e estilos.
+- `src/i18n/` — traduções (PT/EN) e provedor de idioma/tema; todo texto visível fica em `translations.js`.
+- `public/theme-init.js` — aplica tema e idioma salvos antes da primeira pintura (evita flash).
 - `public/images/` — capturas de tela, imagem do hero e favicon.
 - `assets/fonts/` — fontes usadas pelo site.
 - `deploy/nginx/default.conf` — configuração do Nginx do container.

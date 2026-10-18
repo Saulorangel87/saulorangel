@@ -1,7 +1,9 @@
 import Reveal from './Reveal';
 import { ArrowUpRight, MapPinIcon } from './Icons';
+import { usePreferences } from '../i18n/Preferences';
 
 export default function Hero() {
+  const { t } = usePreferences();
   return (
     <section className="hero-section" id="inicio" aria-labelledby="hero-title">
       <img
@@ -16,19 +18,19 @@ export default function Hero() {
       <div className="hero-overlay" aria-hidden="true" />
       <div className="site-container hero-content">
         <Reveal className="hero-copy">
-          <p className="eyebrow">desenvolvedor em formação</p>
+          <p className="eyebrow">{t('hero.eyebrow')}</p>
           <h1 id="hero-title" className="hero-title">
             <span className="hero-name">Saulo Rangel</span>
             <span className="hero-profession">Full Stack<br />Developer</span>
           </h1>
           <p className="hero-lede">
-            Desenvolvo aplicações para resolver problemas reais — da interface ao backend e ao deploy.
+            {t('hero.lede')}
           </p>
           <div className="hero-actions">
-            <a className="button button-primary" href="#projetos">Ver projetos <ArrowUpRight /></a>
-            <a className="button button-outline" href="#contato">Entrar em contato</a>
+            <a className="button button-primary" href="#projetos">{t('hero.seeProjects')} <ArrowUpRight /></a>
+            <a className="button button-outline" href="#contato">{t('hero.contact')}</a>
           </div>
-          <p className="hero-location"><MapPinIcon /> Campos dos Goytacazes, RJ</p>
+          <p className="hero-location"><MapPinIcon /> {t('hero.location')}</p>
         </Reveal>
       </div>
     </section>

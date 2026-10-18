@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { GitHubIcon, LinkedInIcon, MailIcon } from './Icons';
+import { usePreferences } from '../i18n/Preferences';
 
 const socialLinks = [
   { label: 'GitHub', href: 'https://github.com/Saulorangel87', icon: GitHubIcon },
@@ -9,6 +10,7 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+  const { t } = usePreferences();
   const footerRef = useRef(null);
 
   useLayoutEffect(() => {
@@ -48,11 +50,11 @@ export default function Footer() {
       <div className="site-container footer-row">
         <p className="footer-brand">
           <strong>SAULO RANGEL</strong>
-          <span className="footer-desktop-copy">· Desenvolvedor Full Stack · Campos dos Goytacazes, RJ</span>
-          <span className="footer-mobile-copy">· Full Stack</span>
+          <span className="footer-desktop-copy">{t('footer.desktop')}</span>
+          <span className="footer-mobile-copy">{t('footer.mobile')}</span>
         </p>
-        <p className="footer-note">Disciplina hoje, resultados sempre.</p>
-        <nav className="footer-links" aria-label="Links de contato">
+        <p className="footer-note">{t('footer.note')}</p>
+        <nav className="footer-links" aria-label={t('footer.linksLabel')}>
           {socialLinks.map(({ label, href, icon: Icon }) => (
             <a
               key={label}
