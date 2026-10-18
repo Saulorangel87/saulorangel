@@ -1,6 +1,6 @@
 # Portfólio pessoal — Saulo Rangel
 
-Portfólio de página única feito com React, Vite e Tailwind CSS. Apresenta minha trajetória como desenvolvedor em formação e projetos próprios, com layout responsivo, animações discretas e respeito à preferência por movimento reduzido.
+Portfólio feito com React, Vite e Tailwind CSS. Apresenta minha trajetória como desenvolvedor em formação, projetos próprios e certificações, em português e inglês, com tema claro e escuro, layout responsivo, animações discretas e respeito à preferência por movimento reduzido.
 
 Site: <https://devsaulo.com.br>
 
@@ -10,6 +10,13 @@ Site: <https://devsaulo.com.br>
 - Vite 7
 - Tailwind CSS 4
 - Nginx para servir os arquivos estáticos de produção
+
+## Recursos
+
+- **Idioma PT/EN:** todo o texto fica em `src/i18n/translations.js`. O idioma escolhido é salvo no navegador; na primeira visita, navegadores em português veem PT e os demais veem EN.
+- **Tema claro/escuro:** as cores são variáveis CSS em `src/index.css` (`:root` e `:root[data-theme="light"]`). Na primeira visita vale a preferência do sistema; a escolha é salva no navegador. `public/theme-init.js` aplica tema e idioma antes da primeira pintura (arquivo próprio porque a CSP não permite scripts inline).
+- **Certificações:** seção na home com os destaques e lista completa em `#/certificacoes` (roteamento por hash, sem regra extra no Nginx). Os PDFs não são publicados; cada certificado é comprovado por link ou código de validação.
+- **Currículo em PDF:** botão em Contato que baixa o PDF no idioma ativo.
 
 ## Desenvolvimento local
 
@@ -81,14 +88,31 @@ docker inspect saulorangel-portfolio --format '{{.State.Status}}'
 
 O portfólio destaca Cadência, Controle de Estoque, Controle de Despesas, o Guia de Logística e o Let's Go Run. As imagens dos projetos públicos abrem seus respectivos sites; o Guia é apresentado como projeto interno, sem link público, login ou credenciais.
 
+### Como atualizar
+
+| O que mudar | Onde |
+| --- | --- |
+| Textos do site (PT e EN) | `src/i18n/translations.js` |
+| Projetos (link, imagem, ordem) | `src/data/projects.js` + textos em `translations.js` (`projects.items`) |
+| Tecnologias da stack | `technologyGroups` em `src/data/projects.js` + rótulos em `translations.js` (`stack.groups`) |
+| Certificações (dados, links de validação, destaques) | `src/data/certifications.js` + títulos em `translations.js` (`certs.items`) |
+| Currículo | `resume/data.mjs`, depois `npm run resume` |
+
+Ao adicionar um projeto, coloque a captura em `public/images/` e use um parâmetro de versão no caminho (`?v=AAAAMMDD`) para evitar cache antigo.
+
+### Currículo
+
+`npm run resume` gera `public/curriculo-saulo-rangel-pt.pdf` e `public/curriculo-saulo-rangel-en.pdf` com o Edge ou Chrome em modo headless (use `RESUME_BROWSER` para indicar outro executável). O currículo público não inclui telefone nem CPF. Gere novamente e faça commit dos PDFs sempre que `resume/data.mjs` mudar.
+
+### Privacidade
+
+Não publique PDFs de certificados: alguns trazem CPF e dados pessoais. Use apenas o link ou o código de validação da instituição.
+
 ## Estrutura do projeto
 
-- `src/` — aplicação React, componentes, dados e estilos.
-- `src/i18n/` — traduções (PT/EN) e provedor de idioma/tema; todo texto visível fica em `translations.js`.
-- `resume/` — fonte do currículo (`data.mjs`) e gerador de PDF; `npm run resume` atualiza `public/curriculo-saulo-rangel-{pt,en}.pdf` (exige Edge ou Chrome).
-- `public/theme-init.js` — aplica tema e idioma salvos antes da primeira pintura (evita flash).
-- `public/images/` — capturas de tela, imagem do hero e favicon.
-- `assets/fonts/` — fontes usadas pelo site.
+- `src/` — aplicação React: `components/`, `data/` (projetos, stack, certificações), `i18n/` (traduções e provedor de idioma/tema) e `index.css`.
+- `public/` — arquivos servidos como estão: `images/`, `theme-init.js`, `ads.txt` e os PDFs do currículo.
+- `resume/` — fonte do currículo (`data.mjs`) e gerador de PDF (`build.mjs`).
+- `assets/fonts/` — fontes DM Sans e DM Serif Display, empacotadas pelo Vite.
 - `deploy/nginx/default.conf` — configuração do Nginx do container.
-- `legacy/` — versão anterior, mantida para consulta.
 - `dist/` — saída gerada pelo build; não editar manualmente.
