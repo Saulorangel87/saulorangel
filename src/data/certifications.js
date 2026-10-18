@@ -1,7 +1,7 @@
 // Dados estruturais das certificações. Títulos, instituições e grupos ficam em src/i18n/translations.js (chave `certs`).
 // Nenhum PDF é publicado: cada certificado é comprovado por link público ou código de validação da instituição.
 // `featured: true` faz o certificado aparecer na seção da home; todos aparecem na página #/certificacoes.
-const ENAP_VALIDATION_URL = 'https://www.escolavirtual.gov.br/documentos/validacao';
+// A validação da Enap (escolavirtual.gov.br) exige login, então não há link: mostramos o código e a instrução.
 
 export const certificationGroups = ['web', 'python', 'security', 'hardware'];
 
@@ -28,11 +28,11 @@ export const certifications = [
   },
   {
     id: 'enap-python', issuer: 'enap', hours: 20, date: '2026-04-07', group: 'python', grade: { type: 'score', value: 100 },
-    validation: { idKind: 'code', id: '24ve217249049U6i', url: ENAP_VALIDATION_URL },
+    validation: { idKind: 'code', id: '24ve217249049U6i', hint: 'enap' },
   },
   {
     id: 'enap-pln', issuer: 'enap', hours: 25, date: '2026-04-06', group: 'python', featured: true, grade: { type: 'score', value: 100 },
-    validation: { idKind: 'code', id: '4ahe21704092iigy', url: ENAP_VALIDATION_URL },
+    validation: { idKind: 'code', id: '4ahe21704092iigy', hint: 'enap' },
   },
   {
     id: 'ifrs-simuladores', issuer: 'ifrs', hours: 20, date: '2026-03-27', group: 'hardware', grade: { type: 'percent', value: 87.78 },

@@ -41,6 +41,7 @@ export function Credential({ cert }) {
       {validation.url && (
         <a href={validation.url} target="_blank" rel="noopener noreferrer">{t('certs.validateAt')} <ArrowUpRight size={14} /></a>
       )}
+      {validation.hint && <span>{t('certs.hints.' + validation.hint)}</span>}
     </p>
   );
 }
