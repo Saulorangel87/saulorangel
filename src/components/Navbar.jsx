@@ -7,11 +7,12 @@ const links = [
   { href: '#projetos', key: 'projects' },
   { href: '#sobre', key: 'about' },
   { href: '#trajetoria', key: 'journey' },
+  { href: '#certificacoes', key: 'certifications' },
   { href: '#tecnologias', key: 'stack' },
   { href: '#contato', key: 'contact' },
 ];
 
-export default function Navbar() {
+export default function Navbar({ route = 'home' }) {
   const { t, lang, setLang, theme, toggleTheme } = usePreferences();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -22,7 +23,8 @@ export default function Navbar() {
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
 
-    const sections = links.map(({ href }) => document.querySelector(href)).filter(Boolean);
+    const sections = route === 'home' ? links.map(({ href }) => document.querySelector(href)).filter(Boolean) : [];
+    setActive(route === 'home' ? 'inicio' : 'certificacoes');
     const observer = 'IntersectionObserver' in window
       ? new IntersectionObserver((entries) => {
           entries.forEach((entry) => {
@@ -36,7 +38,7 @@ export default function Navbar() {
       window.removeEventListener('scroll', onScroll);
       observer?.disconnect();
     };
-  }, []);
+  }, [route]);
 
   useEffect(() => {
     if (!menuOpen) return undefined;

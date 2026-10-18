@@ -85,6 +85,7 @@ O portfólio destaca Cadência, Controle de Estoque, Controle de Despesas, o Gui
 
 - `src/` — aplicação React, componentes, dados e estilos.
 - `src/i18n/` — traduções (PT/EN) e provedor de idioma/tema; todo texto visível fica em `translations.js`.
+- `resume/` — fonte do currículo (`data.mjs`) e gerador de PDF; `npm run resume` atualiza `public/curriculo-saulo-rangel-{pt,en}.pdf` (exige Edge ou Chrome).
 - `public/theme-init.js` — aplica tema e idioma salvos antes da primeira pintura (evita flash).
 - `public/images/` — capturas de tela, imagem do hero e favicon.
 - `assets/fonts/` — fontes usadas pelo site.

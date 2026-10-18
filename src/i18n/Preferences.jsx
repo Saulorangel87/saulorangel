@@ -47,7 +47,6 @@ export function PreferencesProvider({ children }) {
     const root = document.documentElement;
     root.lang = lang === 'pt' ? 'pt-BR' : 'en';
     root.setAttribute('data-lang', lang);
-    document.title = dictionary.meta.title;
     document.querySelector('meta[name="description"]')?.setAttribute('content', dictionary.meta.description);
     document.querySelector('meta[property="og:title"]')?.setAttribute('content', dictionary.meta.ogTitle);
     document.querySelector('meta[property="og:description"]')?.setAttribute('content', dictionary.meta.ogDescription);

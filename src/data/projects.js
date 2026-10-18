@@ -9,7 +9,7 @@ export const projects = [
 
 export const technologyGroups = [
   ['React', 'JavaScript', 'HTML', 'CSS', 'Vite', 'Tailwind CSS'],
-  ['Go', 'APIs REST'],
+  ['Go', 'Python', 'C', 'APIs REST'],
   ['PostgreSQL', 'SQLite'],
   ['Docker', 'Docker Compose', 'Linux', 'Nginx', 'Cloudflare', 'VPS', 'Git', 'GitHub', 'VS Code'],
 ];

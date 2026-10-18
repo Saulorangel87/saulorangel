@@ -1,5 +1,5 @@
 import Reveal from './Reveal';
-import { ArrowUpRight, GitHubIcon, LinkedInIcon, MailIcon } from './Icons';
+import { ArrowUpRight, DownloadIcon, GitHubIcon, LinkedInIcon, MailIcon } from './Icons';
 import { usePreferences } from '../i18n/Preferences';
 
 export default function Contact() {
@@ -16,6 +16,9 @@ export default function Contact() {
           <div className="contact-actions">
             <a className="button button-primary" href="mailto:sauloleonardo1987@gmail.com">
               {t('contact.sendEmail')} <ArrowUpRight />
+            </a>
+            <a className="button button-outline" href={t('contact.resumeFile')} download>
+              {t('contact.downloadResume')} <DownloadIcon />
             </a>
             <nav className="contact-links" aria-label={t('contact.socialLabel')}>
               <a href="https://github.com/Saulorangel87" target="_blank" rel="noopener noreferrer"><GitHubIcon />GitHub</a>
