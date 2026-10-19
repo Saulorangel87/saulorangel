@@ -13,6 +13,8 @@ Site: <https://devsaulo.com.br>
 
 ## Recursos
 
+- **Ordem das seções (home):** Hero → Projetos → Stack → Sobre → Trajetória → Certificações → Contato. A ordem é definida em `src/App.jsx`, e o menu em `src/components/Navbar.jsx` segue a mesma sequência.
+
 - **Idioma PT/EN:** todo o texto fica em `src/i18n/translations.js`. O idioma escolhido é salvo no navegador; na primeira visita, navegadores em português veem PT e os demais veem EN.
 - **Tema claro/escuro:** as cores são variáveis CSS em `src/index.css` (`:root` e `:root[data-theme="light"]`). Na primeira visita vale a preferência do sistema; a escolha é salva no navegador. `public/theme-init.js` aplica tema e idioma antes da primeira pintura (arquivo próprio porque a CSP não permite scripts inline).
 - **Certificações:** seção na home com os destaques e lista completa em `#/certificacoes` (roteamento por hash, sem regra extra no Nginx). Os PDFs não são publicados; cada certificado é comprovado por link ou código de validação.

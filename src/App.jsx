@@ -42,10 +42,10 @@ export default function App() {
             <>
               <Hero />
               <Projects />
+              <TechStack />
               <About />
               <Journey />
               <Certifications />
-              <TechStack />
               <Contact />
             </>
           )}

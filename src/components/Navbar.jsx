@@ -5,10 +5,10 @@ import { LANGUAGES } from '../i18n/translations';
 
 const links = [
   { href: '#projetos', key: 'projects' },
+  { href: '#tecnologias', key: 'stack' },
   { href: '#sobre', key: 'about' },
   { href: '#trajetoria', key: 'journey' },
   { href: '#certificacoes', key: 'certifications' },
-  { href: '#tecnologias', key: 'stack' },
   { href: '#contato', key: 'contact' },
 ];
 
